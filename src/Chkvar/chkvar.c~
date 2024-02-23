@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int 
+comprobar(int argc, char *argv[])
+{
+	int error = 0;
+	if((argc < 3) || ((argc - 1) % 2 != 0))
+	{
+		printf("usage: ch varname varcontent [varname varcontent] ... ");
+		error++;
+	} else{
+		for(int i = 1; i < argc; i = i + 2){
+			char *entorno = getenv(argv[i]);
+			if((entorno == NULL) || (strcmp(entorno, argv[i + 1]) != 0)){
+				if(error == 0){
+					printf("error: ");
+				}else{
+					printf(", ");
+				}
+				error++;
+				printf("%s != %s", argv[i], argv[i+1] );
+			}
+		}
+		
+	}
+	return error;	
+}
+
+int
+main(int argc, char *argv[])
+{
+	int error = 0;
+	error = comprobar(argc, argv);
+	
+	if(error != 0){
+		printf("\n");
+		exit(EXIT_FAILURE);		
+	}else{
+		exit(EXIT_SUCCESS);
+	}
+
+}

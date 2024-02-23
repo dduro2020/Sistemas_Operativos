@@ -1,0 +1,11 @@
+COMPILAR PROGRAMAS EN C:
+
+cc -c -g -Wall -Wshadow <Nombre>.c
+cc -o <Nombre> <Nombre>.o
+./<Nombre>
+
+DEPURAR:
+--no usar printf--
+gdb <Nombre>
+<Nombre> + parametros
+bc para ver la pila
